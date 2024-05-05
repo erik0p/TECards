@@ -2,7 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
+using UnboundLib.Cards;
 using UnityEngine;
+using TECards.Cards;
+using HarmonyLib;
 
 
 namespace TECards
@@ -17,21 +20,22 @@ namespace TECards
         private const string ModId = "com.thirdeye.tecards";
         private const string ModName = "TECards";
         private const string Version = "0.0.1";
-        public const string modInitials = "TE";
+        public const string ModInitials = "TE";
         internal static AssetBundle assets;
-
-        public static object ModInitials { get; internal set; }
+        public static TECards instance { get; private set; }
 
         private void Awake()
         {
-            assets = Jotunn.Utils.AssetUtils.LoadAssetBundleFromResources("assets", typeof(TECards).Assembly);
-            assets.LoadAsset<GameObject>("ModCards").GetComponent<CardHolder>().RegisterCards();
+            //assets = Jotunn.Utils.AssetUtils.LoadAssetBundleFromResources("assets", typeof(TECards).Assembly);
+            //assets.LoadAsset<GameObject>("ModCards").GetComponent<CardHolder>().RegisterCards();
+            new Harmony(ModId).PatchAll();
         }
 
         // Start is called before the first frame update
         private void Start()
         {
-
+            instance = this;
+            CustomCard.BuildCard<MozemDownTony>();
         }
 
         // Update is called once per frame

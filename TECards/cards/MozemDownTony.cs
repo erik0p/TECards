@@ -9,28 +9,29 @@ using UnityEngine;
 
 namespace TECards.Cards
 {
-    class Template : CustomCard
+    class MozemDownTony : CustomCard
     {
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
-            UnityEngine.Debug.Log($"[{TECards.ModInitials}][Card] {GetTitle()} has been setup.");
+            gun.damage = 0.2f;
+            gun.ammo = 30;
+            gun.attackSpeed = 0.1f;
+            gun.spread = 0.1f;
         }
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
-            UnityEngine.Debug.Log($"[{TECards.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}.");
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
-            UnityEngine.Debug.Log($"[{TECards.ModInitials}][Card] {GetTitle()} has been removed from player {player.playerID}.");
         }
 
         protected override string GetTitle()
         {
-            return "CardName";
+            return "Mozem Down Tony";
         }
         protected override string GetDescription()
         {
-            return "CardDescription";
+            return "Mozem down!!";
         }
         protected override GameObject GetCardArt()
         {
@@ -46,16 +47,37 @@ namespace TECards.Cards
             {
                 new CardInfoStat()
                 {
+                    positive = false,
+                    stat = "Damage",
+                    amount = "-80%",
+                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
+                },
+                new CardInfoStat()
+                {
                     positive = true,
-                    stat = "Effect",
-                    amount = "No",
+                    stat = "Ammo",
+                    amount = "+30",
+                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
+                },
+                new CardInfoStat()
+                {
+                    positive = true,
+                    stat = "ATKSPD",
+                    amount = "+900%",
+                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
+                },
+                new CardInfoStat()
+                {
+                    positive = false,
+                    stat = "Spread",
+                    amount = "+10%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }
             };
         }
         protected override CardThemeColor.CardThemeColorType GetTheme()
         {
-            return CardThemeColor.CardThemeColorType.ColdBlue;
+            return CardThemeColor.CardThemeColorType.NatureBrown;
         }
         public override string GetModName()
         {

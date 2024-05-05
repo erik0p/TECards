@@ -10,14 +10,14 @@ public class CardHolder : MonoBehaviour
 
     internal void RegisterCards()
     {
-        foreach (var Card in Cards)
-        {
-            CustomCard.RegisterUnityCard(Card, TECards.modInitials, Card.GetComponent<CardInfo>().cardName, true, null);
-        }
-        foreach (var Card in HiddenCards)
-        {
-            CustomCard.RegisterUnityCard(Card, TECards.modInitials, Card.GetComponent<CardInfo>().cardName, false, null);
-            ModdingUtils.Utils.Cards.instance.AddHiddenCard(Card.GetComponent<CardInfo>());
-        }
+        //foreach (var Card in Cards)
+        //{
+        //    CustomCard.RegisterUnityCard(Card, TECards.modInitials, Card.GetComponent<CardInfo>().cardName, true, null);
+        //}
+        //foreach (var Card in HiddenCards)
+        //{
+        //    CustomCard.RegisterUnityCard(Card, TECards.modInitials, Card.GetComponent<CardInfo>().cardName, false, null);
+        //    ModdingUtils.Utils.Cards.instance.AddHiddenCard(Card.GetComponent<CardInfo>());
+        //}
     }
 }
