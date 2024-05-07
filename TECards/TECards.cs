@@ -22,7 +22,6 @@ namespace TECards
         private const string Version = "0.0.1";
         public const string ModInitials = "TE";
         internal static AssetBundle assets;
-        public static TECards instance { get; private set; }
 
         private void Awake()
         {
@@ -34,8 +33,7 @@ namespace TECards
         // Start is called before the first frame update
         private void Start()
         {
-            instance = this;
-            CustomCard.BuildCard<MozemDownTony>();
+            CustomCard.BuildCard<MozemDown>();
         }
 
         // Update is called once per frame

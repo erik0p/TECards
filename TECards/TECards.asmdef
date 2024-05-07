@@ -2,7 +2,8 @@
     "name": "TECards",
     "references": [
         "UnboundLib",
-        "ModdingUtils"
+        "ModdingUtils",
+        "ModsPlus"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],
