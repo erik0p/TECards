@@ -11,14 +11,17 @@ namespace TECards.Cards
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
             gun.damage = 0.1f;
-            gun.ammo = 60;
             gun.attackSpeed = 0.2f;
             gun.reloadTimeAdd = 2.0f;
+            gun.ammo = 30;
+            gun.spread = 0.6f;
+            statModifiers.movementSpeed = 0.7f;
             cardInfo.allowMultiple = false;
         }
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
-            gun.spread += 0.6f;
+            //gunAmmo.maxAmmo += 30;
+            //gun.spread += 0.6f;
             MozemEffect mozemEffect = player.gameObject.AddComponent<MozemEffect>();
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
@@ -31,7 +34,7 @@ namespace TECards.Cards
         }
         protected override string GetDescription()
         {
-            return "Bullet spread is reduced with sustained fire.";
+            return "Bullet spread is reduced while you sustain shooting";
         }
         protected override GameObject GetCardArt()
         {
@@ -39,7 +42,7 @@ namespace TECards.Cards
         }
         protected override CardInfo.Rarity GetRarity()
         {
-            return CardInfo.Rarity.Common;
+            return CardInfo.Rarity.Uncommon;
         }
         protected override CardInfoStat[] GetStats()
         {
@@ -70,7 +73,14 @@ namespace TECards.Cards
                 {
                     positive = false,
                     stat = "Reload Time",
-                    amount = "+2.0s%",
+                    amount = "+2.0s",
+                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
+                },
+                new CardInfoStat()
+                {
+                    positive = false,
+                    stat = "Movement Speed",
+                    amount = "-30%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat()

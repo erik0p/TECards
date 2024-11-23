@@ -33,7 +33,8 @@ namespace TECards
         // Start is called before the first frame update
         private void Start()
         {
-            CustomCard.BuildCard<MozemDown>();
+            //CustomCard.BuildCard<MozemDown>(); // Card not finished
+            CustomCard.BuildCard<LaggyBoi>();
         }
 
         // Update is called once per frame
