@@ -23,7 +23,7 @@ namespace TECards.MonoBehaviours
         public override CounterStatus UpdateCounter()
         {
             prevLoc = currLoc;
-            currLoc = player.transform.position;
+            currLoc = base.player.transform.position;
             elapsedTime += Time.deltaTime;
             if (PlayerIsMoving(currLoc, prevLoc))
             {
