@@ -6,6 +6,7 @@ using UnboundLib.Cards;
 using UnityEngine;
 using TECards.Cards;
 using HarmonyLib;
+using Jotunn.Utils;
 
 
 namespace TECards
@@ -17,24 +18,33 @@ namespace TECards
     [BepInProcess("Rounds.exe")]
     public class TECards : BaseUnityPlugin
     {
+        internal static AssetBundle assets;
+        public static GameObject PolyphemusArt;
+        public static GameObject SteroidsArt;
+
         private const string ModId = "com.thirdeye.tecards";
         private const string ModName = "TECards";
         private const string Version = "0.0.1";
         public const string ModInitials = "TE";
-        internal static AssetBundle assets;
+
 
         private void Awake()
         {
-            //assets = Jotunn.Utils.AssetUtils.LoadAssetBundleFromResources("assets", typeof(TECards).Assembly);
-            //assets.LoadAsset<GameObject>("ModCards").GetComponent<CardHolder>().RegisterCards();
             new Harmony(ModId).PatchAll();
         }
 
         // Start is called before the first frame update
         private void Start()
         {
+            assets = AssetUtils.LoadAssetBundleFromResources("assets", typeof(TECards).Assembly);
+            PolyphemusArt = assets.LoadAsset<GameObject>("C_Polyphemus");
+            SteroidsArt = assets.LoadAsset<GameObject>("C_Steroids");
+
             //CustomCard.BuildCard<MozemDown>(); // Card not finished
             CustomCard.BuildCard<LaggyBoi>();
+            CustomCard.BuildCard<Polyphemus>();
+            CustomCard.BuildCard<Steroids>();
+            CustomCard.BuildCard<AntiCola>();
         }
 
         // Update is called once per frame
