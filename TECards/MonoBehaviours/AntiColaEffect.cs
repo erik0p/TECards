@@ -28,6 +28,7 @@ namespace TECards.MonoBehaviours
             if (PlayerIsMoving(currLoc, prevLoc))
             {
                 multiplier = 1f;
+                elapsedTime = 0f;
             } 
             else if (elapsedTime > 2.0f)
             {
