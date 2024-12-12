@@ -23,6 +23,7 @@ namespace TECards.Cards
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
+            Destroy(player.transform.gameObject.GetComponent<AntiColaEffect>());
         }
 
         protected override string GetTitle()
@@ -35,7 +36,7 @@ namespace TECards.Cards
         }
         protected override GameObject GetCardArt()
         {
-            return null;
+            return TECards.AntiColaArt;
         }
         protected override CardInfo.Rarity GetRarity()
         {

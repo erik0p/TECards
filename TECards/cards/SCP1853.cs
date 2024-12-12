@@ -13,15 +13,18 @@ namespace TECards.Cards
     {
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
-            gun.reloadTime = 0.5f;
-            gun.attackSpeed = 0.7f;
-            statModifiers.movementSpeed = 1.3f;
+            gun.projectileColor = new Color(0.25f, 0.43f, 0.18f);
+            gun.reloadTime = 0.85f;
+            gun.attackSpeed = 0.85f;
+            statModifiers.movementSpeed = 1.15f;
         }
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
+            SCP1853Effect effect  = player.gameObject.AddComponent<SCP1853Effect>();
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
+            Destroy(player.transform.gameObject.GetComponent<SCP1853Effect>());
         }
 
         protected override string GetTitle()
@@ -30,7 +33,7 @@ namespace TECards.Cards
         }
         protected override string GetDescription()
         {
-            return "";
+            return "Taking damage grants additional bonus stats. This effect may stack up to four times.";
         }
         protected override GameObject GetCardArt()
         {
@@ -48,21 +51,21 @@ namespace TECards.Cards
                 {
                     positive = true,
                     stat = "Movement Speed",
-                    amount = "+30%",
+                    amount = "+15%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat()
                 {
                     positive = true,
                     stat = "Attack Speed",
-                    amount = "+30%",
+                    amount = "+15%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat()
                 {
                     positive = true,
                     stat = "Reload Time",
-                    amount = "-50%",
+                    amount = "-15%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }
             };

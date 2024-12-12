@@ -21,6 +21,7 @@ namespace TECards
         internal static AssetBundle assets;
         public static GameObject PolyphemusArt;
         public static GameObject SteroidsArt;
+        public static GameObject AntiColaArt;
 
         private const string ModId = "com.thirdeye.tecards";
         private const string ModName = "TECards";
@@ -39,6 +40,7 @@ namespace TECards
             assets = AssetUtils.LoadAssetBundleFromResources("assets", typeof(TECards).Assembly);
             PolyphemusArt = assets.LoadAsset<GameObject>("C_Polyphemus");
             SteroidsArt = assets.LoadAsset<GameObject>("C_Steroids");
+            AntiColaArt = assets.LoadAsset<GameObject>("C_Anti-Cola");
 
             //CustomCard.BuildCard<MozemDown>(); // Card not finished
             CustomCard.BuildCard<LaggyBoi>();

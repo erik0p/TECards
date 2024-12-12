@@ -3,25 +3,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SCP1853Effect : CounterReversibleEffect
+public class SCP1853Effect : ReversibleEffect
 {
-    public override void OnApply()
+    private int stacks = 0;
+    //public static Color green = new Color(0.25f, 0.43f, 0.18f);
+
+    public override void OnStart()
     {
-        throw new System.NotImplementedException();
+        base.OnStart();
+        player.data.stats.WasDealtDamageAction += OnDamage;
     }
 
-    public override void Reset()
+    public override void OnUpdate()
     {
-        throw new System.NotImplementedException();
+        base.OnUpdate();
+        ApplyModifiers();
     }
 
-    public override CounterStatus UpdateCounter()
+    public override void OnOnDestroy()
     {
-        throw new System.NotImplementedException();
+        base.OnOnDestroy();
+        player.data.stats.WasDealtDamageAction -= OnDamage;
     }
 
-    public override void UpdateEffects()
+    private void OnDamage(Vector2 damage, bool selfDamage)
     {
-        throw new System.NotImplementedException();
+        if (!selfDamage && stacks < 4)
+        {
+            stacks++;
+            ClearModifiers();
+            this.gunStatModifier.attackSpeed_mult = 1f - (stacks * 0.15f); 
+            this.gunAmmoStatModifier.reloadTimeMultiplier_mult = 1f - (stacks * 0.15f);
+            this.characterStatModifiersModifier.movementSpeed_mult = 1f + (stacks * 0.15f);
+            this.gunStatModifier.projectileColor = Color.Lerp(this.gun.projectileColor, Color.red, (float)stacks / 4.0f);
+        }
     }
 }

@@ -25,7 +25,7 @@ namespace TECards.MonoBehaviours
             prevLoc = currLoc;
             currLoc = base.player.transform.position;
             elapsedTime += Time.deltaTime;
-            if (PlayerIsMoving(currLoc, prevLoc))
+            if (IsPlayerMoving(currLoc, prevLoc))
             {
                 multiplier = 1f;
                 elapsedTime = 0f;
@@ -33,7 +33,6 @@ namespace TECards.MonoBehaviours
             else if (elapsedTime > 2.0f)
             {
                 multiplier = 2f;
-                elapsedTime = 0f;
             }
 
             return CounterStatus.Apply;
@@ -43,7 +42,7 @@ namespace TECards.MonoBehaviours
         {
             base.healthHandlerModifier.regen_mult = multiplier;
         }
-        private bool PlayerIsMoving(Vector2 curr, Vector2 prev)
+        private bool IsPlayerMoving(Vector2 curr, Vector2 prev)
         {
             return Vector2.Distance(curr, prev) > 0.1;
         }

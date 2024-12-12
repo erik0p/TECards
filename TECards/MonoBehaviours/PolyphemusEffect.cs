@@ -25,15 +25,15 @@ namespace TECards.MonoBehaviours
             this.totalAmmoCount =  gunToModify.GetComponentInChildren<GunAmmo>().maxAmmo;
             this.currentAmmoCount = totalAmmoCount;
             this.projectileSize = gunToModify.projectileSize;
-            UnityEngine.Debug.Log($"projectilesizedef={gunToModify.projectileSize}");
         }
 
         void Update()
         {
             GunAmmo currentAmmo = gunToModify.GetComponentInChildren<GunAmmo>();
+            float increaseSizeAmount = 0f;
             totalAmmoCount = currentAmmo.maxAmmo;
             currentAmmoCount = (int)currentAmmo.GetFieldValue("currentAmmo");
-            float increaseSizeAmount = 0f;
+
             if (currentAmmoCount > 0)
             {
                 increaseSizeAmount = UnityEngine.Mathf.Lerp(10f, 0f, ((float)currentAmmoCount / (float)totalAmmoCount));
@@ -43,8 +43,6 @@ namespace TECards.MonoBehaviours
                 }
             }
             gunToModify.projectileSize = increaseSizeAmount;
-            UnityEngine.Debug.Log($"increaseSizeAmount={increaseSizeAmount}");
-            UnityEngine.Debug.Log($"curr ammo={currentAmmoCount}, total ammo={totalAmmoCount}, proj size={this.gunToModify.projectileSize}");
         }
 
         public void OnDestroy()
