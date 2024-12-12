@@ -24,11 +24,10 @@ namespace TECards.Cards
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
             PolyphemusEffect polyphemusEffect = player.gameObject.AddComponent<PolyphemusEffect>();
-            //UnityEngine.Debug.Log($"[{TECards.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}.");
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
-            //UnityEngine.Debug.Log($"[{TECards.ModInitials}][Card] {GetTitle()} has been removed from player {player.playerID}.");
+            Destroy(player.transform.gameObject.GetComponent<PolyphemusEffect>());
         }
 
         protected override string GetTitle()
