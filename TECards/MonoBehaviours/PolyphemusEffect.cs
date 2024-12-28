@@ -1,58 +1,53 @@
-﻿using HarmonyLib;
-using ModdingUtils.Extensions;
-using ModdingUtils.MonoBehaviours;
+﻿using ModdingUtils.MonoBehaviours;
 using UnboundLib;
 using UnityEngine;
 
 namespace TECards.MonoBehaviours
 {
-    public class PolyphemusEffect : MonoBehaviour
+    public class PolyphemusEffect : CounterReversibleEffect
     {
-        private Player playerToModify;
-        private Gun gunToModify;
         private int totalAmmoCount;
         private int currentAmmoCount;
-        private float projectileSize;
-        void Awake()
-        {
+        private float multiplier;
 
-        }
-
-        void Start()
+        public override void OnStart()
         {
-            this.playerToModify = gameObject.GetComponent<Player>();
-            this.gunToModify = playerToModify.GetComponent<Holding>().holdable.GetComponent<Gun>();
-            this.totalAmmoCount =  gunToModify.GetComponentInChildren<GunAmmo>().maxAmmo;
+            this.totalAmmoCount =  this.gun.GetComponentInChildren<GunAmmo>().maxAmmo;
             this.currentAmmoCount = totalAmmoCount;
-            this.projectileSize = gunToModify.projectileSize;
         }
 
-        void Update()
+        public override CounterStatus UpdateCounter()
         {
-            GunAmmo currentAmmo = gunToModify.GetComponentInChildren<GunAmmo>();
-            float increaseSizeAmount = 0f;
-            totalAmmoCount = currentAmmo.maxAmmo;
-            currentAmmoCount = (int)currentAmmo.GetFieldValue("currentAmmo");
+            GunAmmo currentAmmo = this.gun.GetComponentInChildren<GunAmmo>();
+            this.multiplier = 0f;
+            this.totalAmmoCount = currentAmmo.maxAmmo;
+            this.currentAmmoCount = (int)currentAmmo.GetFieldValue("currentAmmo");
 
-            if (currentAmmoCount > 0)
+            if (this.currentAmmoCount > 0)
             {
-                increaseSizeAmount = UnityEngine.Mathf.Lerp(10f, 0f, ((float)currentAmmoCount / (float)totalAmmoCount));
-                if (totalAmmoCount == 1)
+                this.multiplier = UnityEngine.Mathf.Lerp(10f, 0f, ((float)this.currentAmmoCount / (float)this.totalAmmoCount));
+                if (this.totalAmmoCount == 1)
                 {
-                    increaseSizeAmount = 10f;
+                    this.multiplier = 1f;
                 }
             }
-            gunToModify.projectileSize = increaseSizeAmount;
+            UnityEngine.Debug.Log($"size mult {multiplier}");
+            //gunStatModifier.projectileSize_mult = 1f + (1f * multiplier);
+            return CounterStatus.Apply;
         }
 
-        public void OnDestroy()
+        public override void UpdateEffects()
         {
-
+            //gun.projectileSize = this.multiplier;
+            gunStatModifier.projectileSize_add = this.multiplier;
         }
 
-        public void Destroy()
+        public override void OnApply()
         {
-            UnityEngine.Object.Destroy(this);
+        }
+
+        public override void Reset()
+        {
         }
     }
 }

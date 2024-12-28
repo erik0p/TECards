@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;
+using TECards.MonoBehaviours;
 
 namespace TECards.Cards
 {
@@ -13,18 +14,19 @@ namespace TECards.Cards
     {
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
-            gun.projectileColor = new Color(0.25f, 0.43f, 0.18f);
+            //cardInfo.allowMultiple = false;
+            //gun.projectileColor = new Color(0.25f, 0.43f, 0.18f);
             gun.reloadTime = 0.85f;
             gun.attackSpeed = 0.85f;
             statModifiers.movementSpeed = 1.15f;
         }
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
-            SCP1853Effect effect  = player.gameObject.AddComponent<SCP1853Effect>();
+            SCP1853Effect effect = player.gameObject.GetOrAddComponent<SCP1853Effect>();
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
-            Destroy(player.transform.gameObject.GetComponent<SCP1853Effect>());
+            Destroy(player.gameObject.GetComponent<SCP1853Effect>());
         }
 
         protected override string GetTitle()

@@ -10,7 +10,8 @@ namespace TECards.MonoBehaviours
         private Vector2 prevLoc;
         private Vector2 currLoc;
         private float multiplier;
-        private float elapsedTime;
+        private float elapsedTime = 0.0f;
+        private float interval = 2.0f;
 
         public override void OnApply()
         {
@@ -28,9 +29,11 @@ namespace TECards.MonoBehaviours
             if (IsPlayerMoving(currLoc, prevLoc))
             {
                 multiplier = 1f;
-                elapsedTime = 0f;
+
+                // reset timer
+                elapsedTime %= interval;
             } 
-            else if (elapsedTime > 2.0f)
+            else if (elapsedTime >= interval)
             {
                 multiplier = 2f;
             }

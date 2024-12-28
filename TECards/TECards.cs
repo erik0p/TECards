@@ -22,6 +22,7 @@ namespace TECards
         public static GameObject PolyphemusArt;
         public static GameObject SteroidsArt;
         public static GameObject AntiColaArt;
+        public static GameObject SCP035Art;
 
         private const string ModId = "com.thirdeye.tecards";
         private const string ModName = "TECards";
@@ -41,12 +42,14 @@ namespace TECards
             PolyphemusArt = assets.LoadAsset<GameObject>("C_Polyphemus");
             SteroidsArt = assets.LoadAsset<GameObject>("C_Steroids");
             AntiColaArt = assets.LoadAsset<GameObject>("C_Anti-Cola");
+            SCP035Art = assets.LoadAsset<GameObject>("C_SCP035");
 
             //CustomCard.BuildCard<MozemDown>(); // Card not finished
             CustomCard.BuildCard<LaggyBoi>();
             CustomCard.BuildCard<Polyphemus>();
             CustomCard.BuildCard<Steroids>();
             CustomCard.BuildCard<AntiCola>();
+            CustomCard.BuildCard<SCP035>();
         }
 
         // Update is called once per frame
