@@ -7,19 +7,41 @@ namespace TECards.MonoBehaviours
 {
     public class SCP035Effect : CounterReversibleEffect
     {
+        private bool applyDamageBuff = true;
+        private float elapsedTime = 0.0f;
+        private float interval = 8.0f;
 
         public override CounterStatus UpdateCounter()
         {
+            elapsedTime += Time.deltaTime;
+            if (elapsedTime >= interval) 
+            {
+                applyDamageBuff = !applyDamageBuff;
+                elapsedTime %= interval;
+            }
             return CounterStatus.Apply;
         }
 
         public override void UpdateEffects()
         {
-            this.gunStatModifier.damage_mult = 2.0f;
-            this.gunAmmoStatModifier.reloadTimeMultiplier_mult = 0.25f;
-            this.characterStatModifiersModifier.movementSpeed_mult = 1.75f;
-            this.characterDataModifier.numberOfJumps_add = 1;
-            this.gunStatModifier.projectileColor = Color.red;
+            if (applyDamageBuff)
+            {
+                this.gunStatModifier.damage_add = 1f;
+                this.gunStatModifier.attackSpeed_mult = 1f;
+                this.gunAmmoStatModifier.reloadTimeMultiplier_mult = 1f;
+                this.characterStatModifiersModifier.movementSpeed_mult = 1f;
+                this.characterDataModifier.numberOfJumps_add = 0;
+                this.gunStatModifier.projectileColor = Color.red;
+            }
+            else
+            {
+                this.gunStatModifier.damage_add = 0f;
+                this.gunStatModifier.attackSpeed_mult = 0.4f;
+                this.gunAmmoStatModifier.reloadTimeMultiplier_mult = 0.25f;
+                this.characterStatModifiersModifier.movementSpeed_mult = 1.75f;
+                this.characterDataModifier.numberOfJumps_add = 1;
+                this.gunStatModifier.projectileColor = Color.cyan;
+            }
         }
 
         public override void OnApply()
@@ -29,7 +51,7 @@ namespace TECards.MonoBehaviours
         public override void Reset()
         {
         }
-        public static IEnumerator SCP035Hook(IGameModeHandler gameModeHandler)
+        public static IEnumerator DisableSCP035(IGameModeHandler gameModeHandler)
         {
             foreach (var player in PlayerManager.instance.players)
             {

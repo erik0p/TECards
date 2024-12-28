@@ -12,8 +12,14 @@ namespace TECards.RoundsEffects
             Player playerToApplyEffect = this.gameObject.GetComponent<Player>().data.lastSourceOfDamage;
             if (!selfDamage && playerToApplyEffect != null && this.gameObject.GetComponent<Player>().data.health <= 0)
             {
-                SCP035EffectProxy reversibleEffect = playerToApplyEffect.gameObject.GetOrAddComponent<SCP035EffectProxy>();
-                reversibleEffect.EnableEffect();
+                if (playerToApplyEffect.gameObject.GetComponent<SCP035Effect>() == null)
+                {
+                    SCP035EffectProxy reversibleEffect = playerToApplyEffect.gameObject.GetOrAddComponent<SCP035EffectProxy>();
+                    reversibleEffect.EnableEffect();
+                } else
+                {
+                    UnityEngine.Debug.Log("cant add effect already have");
+                }
                 SCP035WasDealtDamageEffect wasDealtDamageEffect = playerToApplyEffect.gameObject.GetOrAddComponent<SCP035WasDealtDamageEffect>();
             }
         }

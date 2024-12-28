@@ -45,11 +45,12 @@ namespace TECards
             SCP035Art = assets.LoadAsset<GameObject>("C_SCP035");
 
             //CustomCard.BuildCard<MozemDown>(); // Card not finished
-            CustomCard.BuildCard<LaggyBoi>();
-            CustomCard.BuildCard<Polyphemus>();
-            CustomCard.BuildCard<Steroids>();
+            //CustomCard.BuildCard<LaggyBoi>(); // Card not finished
+            //CustomCard.BuildCard<Polyphemus>(); // Card not finished
+            CustomCard.BuildCard<SCP1853>();
             CustomCard.BuildCard<AntiCola>();
             CustomCard.BuildCard<SCP035>();
+            CustomCard.BuildCard<SCP682>();
         }
 
         // Update is called once per frame
