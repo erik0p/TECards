@@ -14,9 +14,8 @@ namespace TECards.Cards
     {
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
-            block.cdMultiplier = 0.25f;
+            block.cdMultiplier = 0.50f;
             statModifiers.movementSpeed = 1.75f;
-            statModifiers.regen = -10f;
         }
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
@@ -58,7 +57,7 @@ namespace TECards.Cards
                 {
                     positive = true,
                     stat = "Block Cooldown",
-                    amount = "-75%",
+                    amount = "-50%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat()

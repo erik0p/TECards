@@ -10,7 +10,7 @@ namespace TECards.MonoBehaviours
         private Vector2 prevLoc;
         private Vector2 currLoc;
         private float elapsedTime = 0f;
-        private float interval = 1f;
+        private float interval = 0.1f;
 
         public override void OnUpdate()
         {
@@ -22,10 +22,9 @@ namespace TECards.MonoBehaviours
                 elapsedTime += TimeHandler.deltaTime;
                 if (elapsedTime >= interval)
                 {
-                    health.TakeDamage(Vector2.up * 10, player.transform.position, null, null, false, true);
-                    elapsedTime %= interval;
+                    health.TakeDamage(Vector2.up * elapsedTime * 10f, player.transform.position, null, null, false, true);
+                    elapsedTime %= interval; 
                 }
-
             }
         }
 

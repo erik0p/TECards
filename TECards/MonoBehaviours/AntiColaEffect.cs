@@ -11,7 +11,7 @@ namespace TECards.MonoBehaviours
         private Vector2 currLoc;
         private float regenBonus;
         private float elapsedTime = 0f;
-        private float interval = 2f;
+        private float interval = 1f;
 
         public override void OnApply()
         {
