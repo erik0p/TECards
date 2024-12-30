@@ -14,16 +14,14 @@ namespace TECards.Cards
     {
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
-            cardInfo.allowMultiple = false;
             gun.reloadTimeAdd = 0.25f;
             gun.damage = 1.5f;
             gun.attackSpeed = 1.5f;
             gun.projectielSimulatonSpeed = 0.5f;
-            //UnityEngine.Debug.Log($"[{TECards.ModInitials}][Card] {GetTitle()} has been setup.");
         }
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
-            PolyphemusEffect polyphemusEffect = player.gameObject.AddComponent<PolyphemusEffect>();
+            PolyphemusEffect polyphemusEffect = player.gameObject.GetOrAddComponent<PolyphemusEffect>();
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
@@ -36,7 +34,7 @@ namespace TECards.Cards
         }
         protected override string GetDescription()
         {
-            return "Bullet size increases the less ammo you have remaining";
+            return "Bullet size increases the less ammo you have remaining.";
         }
         protected override GameObject GetCardArt()
         {

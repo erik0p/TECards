@@ -46,11 +46,12 @@ namespace TECards
 
             //CustomCard.BuildCard<MozemDown>(); // Card not finished
             //CustomCard.BuildCard<LaggyBoi>(); // Card not finished
-            //CustomCard.BuildCard<Polyphemus>(); // Card not finished
+            CustomCard.BuildCard<Polyphemus>();
             CustomCard.BuildCard<SCP1853>();
             CustomCard.BuildCard<AntiCola>();
             CustomCard.BuildCard<SCP035>();
             CustomCard.BuildCard<SCP682>();
+            CustomCard.BuildCard<SCP999>();
         }
 
         // Update is called once per frame

@@ -17,14 +17,12 @@ namespace TECards.Cards
         {
             SCP035Effect reversibleEffect = player.gameObject.AddComponent<SCP035Effect>();
             SCP035WasDealtDamageEffect wasDealtDamageEffect = player.gameObject.GetOrAddComponent<SCP035WasDealtDamageEffect>();
-            GameModeManager.AddHook(GameModeHooks.HookPointStart, SCP035Effect.DisableSCP035);
-            GameModeManager.AddHook(GameModeHooks.HookRoundEnd, SCP035Effect.DisableSCP035);
+            GameModeManager.AddHook(GameModeHooks.HookPointEnd, SCP035Effect.RemoveProxies);
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
             Destroy(player.gameObject.GetComponent<SCP035Effect>());
-            GameModeManager.RemoveHook(GameModeHooks.HookPointStart, SCP035Effect.DisableSCP035);
-            GameModeManager.RemoveHook(GameModeHooks.HookRoundEnd, SCP035Effect.DisableSCP035);
+            GameModeManager.RemoveHook(GameModeHooks.HookPointEnd, SCP035Effect.RemoveProxies);
         }
 
         protected override string GetTitle()
@@ -33,7 +31,7 @@ namespace TECards.Cards
         }
         protected override string GetDescription()
         {
-            return "Alternates between two powerful buffs. This card's power is temporarily transfered to your killer.";
+            return "Alternates between two powerful buffs. This card's power is temporarily transferred to players who kill someone in possesion of SCP-035.";
         }
         protected override GameObject GetCardArt()
         {
@@ -47,34 +45,6 @@ namespace TECards.Cards
         {
             return new CardInfoStat[]
             {
-                //new CardInfoStat()
-                //{
-                //    positive = true,
-                //    stat = "Damage",
-                //    amount = "+100%",
-                //    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                //},
-                //new CardInfoStat()
-                //{
-                //    positive = true,
-                //    stat = "Reload Time",
-                //    amount = "-75%",
-                //    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                //},
-                //new CardInfoStat()
-                //{
-                //    positive = true,
-                //    stat = "Movement Speed",
-                //    amount = "+75%",
-                //    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                //},
-                //new CardInfoStat()
-                //{
-                //    positive = true,
-                //    stat = "Jumps",
-                //    amount = "+1",
-                //    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                //}
             };
         }
         protected override CardThemeColor.CardThemeColorType GetTheme()

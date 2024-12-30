@@ -1,5 +1,6 @@
 ﻿using ModdingUtils.MonoBehaviours;
 using System.Collections;
+using TECards.RoundsEffects;
 using UnboundLib.GameModes;
 using UnityEngine;
 
@@ -7,13 +8,26 @@ namespace TECards.MonoBehaviours
 {
     public class SCP035Effect : CounterReversibleEffect
     {
-        private bool applyDamageBuff = true;
-        private float elapsedTime = 0.0f;
+        private bool applyDamageBuff;
+        private float elapsedTime;
         private float interval = 8.0f;
+
+        public override void OnStart()
+        {
+            base.OnStart();
+            applyDamageBuff = true;
+            elapsedTime = 0f;
+        }
+
+        public override void Reset()
+        {
+            applyDamageBuff = true;
+            elapsedTime = 0f;
+        }
 
         public override CounterStatus UpdateCounter()
         {
-            elapsedTime += Time.deltaTime;
+            elapsedTime += TimeHandler.deltaTime;
             if (elapsedTime >= interval) 
             {
                 applyDamageBuff = !applyDamageBuff;
@@ -48,18 +62,21 @@ namespace TECards.MonoBehaviours
         {
         }
 
-        public override void Reset()
-        {
-        }
-        public static IEnumerator DisableSCP035(IGameModeHandler gameModeHandler)
+        public static IEnumerator RemoveProxies(IGameModeHandler gameModeHandler)
         {
             foreach (var player in PlayerManager.instance.players)
             {
-                SCP035EffectProxy effect = player.gameObject.GetComponent<SCP035EffectProxy>();
-                if (effect != null)
+                SCP035EffectProxy effect1 = player.gameObject.GetComponent<SCP035EffectProxy>();
+                SCP035WasDealtDamageEffectProxy effect2 = player.gameObject.GetComponent<SCP035WasDealtDamageEffectProxy>();
+                if (effect1 != null)
                 {
-                    effect.DisableEffect();
+                    Destroy(effect1);
                 }
+                if (effect2 != null)
+                {
+                    Destroy(effect2);
+                }
+                player.data.stats.WasUpdated();
             }
             yield break;
         }

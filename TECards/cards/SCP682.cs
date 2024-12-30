@@ -14,7 +14,7 @@ namespace TECards.Cards
     {
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
-            statModifiers.health = 2.0f;
+            statModifiers.health = 1.5f;
         }
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
@@ -31,7 +31,7 @@ namespace TECards.Cards
         }
         protected override string GetDescription()
         {
-            return "";
+            return "Become immune to self-damage.";
         }
         protected override GameObject GetCardArt()
         {
@@ -49,16 +49,9 @@ namespace TECards.Cards
                 {
                     positive = true,
                     stat = "Health",
-                    amount = "+100%",
+                    amount = "+50%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
-                new CardInfoStat()
-                {
-                    positive = true,
-                    stat = "",
-                    amount = "Immune to self-damage",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                }
             };
         }
         protected override CardThemeColor.CardThemeColorType GetTheme()

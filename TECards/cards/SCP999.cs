@@ -1,46 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TECards.MonoBehaviours;
+﻿using TECards.RoundsEffects;
 using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;
 
 namespace TECards.Cards
 {
-    class AntiCola : CustomCard
+    class SCP999 : CustomCard
     {
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
-            statModifiers.movementSpeed = 0.7f;
-            statModifiers.regen = 10f;
+            gun.reloadTime = 0.5f;
         }
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
-            AntiColaEffect antiColaEffect = player.gameObject.AddComponent<AntiColaEffect>();
+            SCP999DealtDamageEffect effect =  player.gameObject.GetOrAddComponent<SCP999DealtDamageEffect>();
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
-            Destroy(player.gameObject.GetComponent<AntiColaEffect>());
+            Destroy(player.gameObject.GetOrAddComponent<SCP999DealtDamageEffect>());
         }
 
         protected override string GetTitle()
         {
-            return "Anti-Cola";
+            return "SCP-999";
         }
         protected override string GetDescription()
         {
-            return "Grants constant health regeneration. Regeneration is increased if you stand still.";
+            return "Bullets coat players in SCP-999. Players coated in SCP-999 have decreased reload time. Players who damage someone effected by SCP-999 are healed";
         }
         protected override GameObject GetCardArt()
         {
-            return TECards.AntiColaArt;
+            return null;
         }
         protected override CardInfo.Rarity GetRarity()
         {
-            return CardInfo.Rarity.Rare;
+            return CardInfo.Rarity.Uncommon;
         }
         protected override CardInfoStat[] GetStats()
         {
@@ -49,22 +43,15 @@ namespace TECards.Cards
                 new CardInfoStat()
                 {
                     positive = true,
-                    stat = "Regen",
-                    amount = "+10hp/s",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                },
-                new CardInfoStat()
-                {
-                    positive = false,
-                    stat = "Movement Speed",
-                    amount = "-30%",
+                    stat = "Reload Time",
+                    amount = "-50%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }
             };
         }
         protected override CardThemeColor.CardThemeColorType GetTheme()
         {
-            return CardThemeColor.CardThemeColorType.ColdBlue;
+            return CardThemeColor.CardThemeColorType.FirepowerYellow;
         }
         public override string GetModName()
         {

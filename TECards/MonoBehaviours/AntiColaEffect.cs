@@ -9,7 +9,7 @@ namespace TECards.MonoBehaviours
     {
         private Vector2 prevLoc;
         private Vector2 currLoc;
-        private float multiplier;
+        private float regenBonus;
         private float elapsedTime = 0.0f;
         private float interval = 2.0f;
 
@@ -25,17 +25,16 @@ namespace TECards.MonoBehaviours
         {
             prevLoc = currLoc;
             currLoc = base.player.transform.position;
-            elapsedTime += Time.deltaTime;
+            elapsedTime += TimeHandler.deltaTime;
             if (IsPlayerMoving(currLoc, prevLoc))
             {
-                multiplier = 1f;
+                regenBonus = 0f;
 
-                // reset timer
-                elapsedTime %= interval;
+                elapsedTime = 0f;
             } 
             else if (elapsedTime >= interval)
             {
-                multiplier = 2f;
+                regenBonus = 10f;
             }
 
             return CounterStatus.Apply;
@@ -43,7 +42,7 @@ namespace TECards.MonoBehaviours
 
         public override void UpdateEffects()
         {
-            base.healthHandlerModifier.regen_mult = multiplier;
+            base.healthHandlerModifier.regen_add = regenBonus;
         }
         private bool IsPlayerMoving(Vector2 curr, Vector2 prev)
         {

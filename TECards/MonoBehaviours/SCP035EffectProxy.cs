@@ -10,35 +10,37 @@ namespace TECards.MonoBehaviours
 {
     public class SCP035EffectProxy : CounterReversibleEffect
     {
-        private bool effectIsActive;
-        private bool applyDamageBuff = true;
-        private float elapsedTime = 0.0f;
-        private float interval = 8.0f;
+        private bool applyDamageBuff;
+        private float elapsedTime;
+        private float interval = 8f;
+
+
+        public override void OnStart()
+        {
+            base.OnStart();
+            applyDamageBuff = true;
+            elapsedTime = 0f;
+        }
+
+        public override void Reset()
+        {
+            applyDamageBuff = true;
+            elapsedTime = 0f;
+        }
 
         public override CounterStatus UpdateCounter()
         {
-            if (effectIsActive)
+            elapsedTime += TimeHandler.deltaTime;
+            if (elapsedTime >= interval)
             {
-                elapsedTime += Time.deltaTime;
-                if (elapsedTime >= interval)
-                {
-                    applyDamageBuff = !applyDamageBuff;
-                    elapsedTime %= interval;
-                }
-                return CounterStatus.Apply;
-            } else
-            {
-                return CounterStatus.Wait;
+                applyDamageBuff = !applyDamageBuff;
+                elapsedTime %= interval;
             }
+            return CounterStatus.Apply;
         }
 
         public override void UpdateEffects()
         {
-            //this.gunStatModifier.damage_add = 1.0f;
-            //this.gunAmmoStatModifier.reloadTimeMultiplier_mult = 0.25f;
-            //this.characterStatModifiersModifier.movementSpeed_mult = 1.75f;
-            //this.characterDataModifier.numberOfJumps_add = 1;
-            //this.gunStatModifier.projectileColor = Color.red;
             if (applyDamageBuff)
             {
                 this.gunStatModifier.damage_add = 1f;
@@ -61,20 +63,6 @@ namespace TECards.MonoBehaviours
 
         public override void OnApply()
         {
-        }
-
-        public override void Reset()
-        {
-        }
-
-        public void EnableEffect()
-        {
-            this.effectIsActive = true;
-        }
-
-        public void DisableEffect()
-        {
-            this.effectIsActive = false;
         }
     }
 }

@@ -5,7 +5,7 @@ using TECards.MonoBehaviours;
 
 namespace TECards.RoundsEffects
 {
-    public class SCP035WasDealtDamageEffect : WasDealtDamageEffect
+    public class SCP035WasDealtDamageEffectProxy : WasDealtDamageEffect
     {
         public override void WasDealtDamage(Vector2 damage, bool selfDamage)
         {
