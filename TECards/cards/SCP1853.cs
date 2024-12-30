@@ -22,7 +22,7 @@ namespace TECards.Cards
         }
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
-            SCP1853Effect effect = player.gameObject.GetOrAddComponent<SCP1853Effect>();
+            SCP1853Effect effect = player.gameObject.AddComponent<SCP1853Effect>();
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {

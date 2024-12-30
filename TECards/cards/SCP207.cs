@@ -3,34 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TECards.MonoBehaviours;
 using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;
 
 namespace TECards.Cards
 {
-    class Template : CustomCard
+    class SCP207 : CustomCard
     {
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
-            UnityEngine.Debug.Log($"[{TECards.ModInitials}][Card] {GetTitle()} has been setup.");
+            block.cdMultiplier = 0.25f;
+            statModifiers.movementSpeed = 1.75f;
+            statModifiers.regen = -10f;
         }
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
-            UnityEngine.Debug.Log($"[{TECards.ModInitials}][Card] {GetTitle()} has been added to player {player.playerID}.");
+            SCP207Effect effect = player.gameObject.AddComponent<SCP207Effect>();
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
-            UnityEngine.Debug.Log($"[{TECards.ModInitials}][Card] {GetTitle()} has been removed from player {player.playerID}.");
+            Destroy(player.gameObject.GetComponent<SCP207Effect>());
         }
 
         protected override string GetTitle()
         {
-            return "CardName";
+            return "SCP-207";
         }
         protected override string GetDescription()
         {
-            return "CardDescription";
+            return "Drains health while moving.";
         }
         protected override GameObject GetCardArt()
         {
@@ -47,8 +50,22 @@ namespace TECards.Cards
                 new CardInfoStat()
                 {
                     positive = true,
-                    stat = "Effect",
-                    amount = "No",
+                    stat = "Movement Speed",
+                    amount = "+75%",
+                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
+                },
+                new CardInfoStat()
+                {
+                    positive = true,
+                    stat = "Block Cooldown",
+                    amount = "-75%",
+                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
+                },
+                new CardInfoStat()
+                {
+                    positive = true,
+                    stat = "Regen",
+                    amount = "-10hp/s",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }
             };

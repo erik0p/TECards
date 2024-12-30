@@ -52,6 +52,7 @@ namespace TECards
             CustomCard.BuildCard<SCP035>();
             CustomCard.BuildCard<SCP682>();
             CustomCard.BuildCard<SCP999>();
+            CustomCard.BuildCard<SCP207>();
         }
 
         // Update is called once per frame

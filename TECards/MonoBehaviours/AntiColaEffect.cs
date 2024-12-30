@@ -10,8 +10,8 @@ namespace TECards.MonoBehaviours
         private Vector2 prevLoc;
         private Vector2 currLoc;
         private float regenBonus;
-        private float elapsedTime = 0.0f;
-        private float interval = 2.0f;
+        private float elapsedTime = 0f;
+        private float interval = 2f;
 
         public override void OnApply()
         {
@@ -46,7 +46,7 @@ namespace TECards.MonoBehaviours
         }
         private bool IsPlayerMoving(Vector2 curr, Vector2 prev)
         {
-            return Vector2.Distance(curr, prev) > 0.1;
+            return Vector2.Distance(curr, prev) > 0.01;
         }
     }
 }
