@@ -36,11 +36,11 @@ namespace TECards.Cards
         }
         protected override GameObject GetCardArt()
         {
-            return null;
+            return TECards.SCP207Art;
         }
         protected override CardInfo.Rarity GetRarity()
         {
-            return CardInfo.Rarity.Common;
+            return CardInfo.Rarity.Uncommon;
         }
         protected override CardInfoStat[] GetStats()
         {
@@ -62,7 +62,7 @@ namespace TECards.Cards
                 },
                 new CardInfoStat()
                 {
-                    positive = true,
+                    positive = false,
                     stat = "Regen",
                     amount = "-10hp/s",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned

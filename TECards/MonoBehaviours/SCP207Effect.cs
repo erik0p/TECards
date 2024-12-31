@@ -12,6 +12,13 @@ namespace TECards.MonoBehaviours
         private float elapsedTime = 0f;
         private float interval = 0.1f;
 
+        public override void OnStart()
+        {
+            base.OnStart();
+            elapsedTime = 0f;
+            SetLivesToEffect(int.MaxValue);
+        }
+
         public override void OnUpdate()
         {
             base.OnUpdate();

@@ -35,7 +35,7 @@ namespace TECards.Cards
         }
         protected override GameObject GetCardArt()
         {
-            return null;
+            return TECards.SCP682Art;
         }
         protected override CardInfo.Rarity GetRarity()
         {

@@ -27,6 +27,8 @@ namespace TECards
         public static GameObject AntiColaArt;
         public static GameObject SCP035Art;
         public static GameObject SCP207Art;
+        public static GameObject SCP999Art;
+        public static GameObject SCP682Art;
 
         private const string ModId = "com.thirdeye.tecards";
         private const string ModName = "TECards";
@@ -48,10 +50,13 @@ namespace TECards
             AntiColaArt = assets.LoadAsset<GameObject>("C_Anti-Cola");
             SCP035Art = assets.LoadAsset<GameObject>("C_SCP035");
             SCP207Art = assets.LoadAsset<GameObject>("C_SCP207");
+            SCP999Art = assets.LoadAsset<GameObject>("C_SCP999");
+            SCP682Art = assets.LoadAsset<GameObject>("C_SCP682");
 
             Candy = CustomCardCategories.instance.CardCategory("Candy");
 
             //CustomCard.BuildCard<LaggyBoi>(); // Card not finished
+            // need art for mozemdown, scp330, bgryr candy
             CustomCard.BuildCard<MozemDown>();
             CustomCard.BuildCard<Polyphemus>();
             CustomCard.BuildCard<SCP1853>();
