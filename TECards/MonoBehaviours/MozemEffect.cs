@@ -5,72 +5,52 @@ using UnityEngine;
 
 namespace TECards.MonoBehaviours
 {
-    public class MozemEffect : ReversibleEffect
+    public class MozemEffect : CounterReversibleEffect
     {
-        private Player playerToModify;
-        private Gun gunToModify;
-
-        private float timeOfLastbulllet;
-        private float baseSpread;
-        private int maxAmmo;
-        public override void OnAwake()
-        {
-            base.OnAwake();
-            this.playerToModify = gameObject.GetComponent<Player>();
-            this.gunToModify = playerToModify.GetComponent<Holding>().holdable.GetComponent<Gun>();
-
-            GameObject attackTrigger = new GameObject("MOZEM_A");
-            AttackTrigger trigger = attackTrigger.AddComponent<AttackTrigger>();
-            trigger.triggerEvent = new UnityEngine.Events.UnityEvent();
-            trigger.triggerEvent.AddListener(() =>
-            {
-                UnityEngine.Debug.Log($"{gunToModify.attackSpeed} atk speed");
-                UnityEngine.Debug.Log($"{gunToModify.timeBetweenBullets} time between bullets");
-                UnityEngine.Debug.Log($"{Time.time - timeOfLastbulllet} time difference");
-                UnityEngine.Debug.Log($"{gunToModify.attackSpeed + (gunToModify.attackSpeed * 0.4)} max time diff");
-                if (Time.time - timeOfLastbulllet <= gunToModify.attackSpeed + (gunToModify.attackSpeed * 0.4))
-                {
-                    //gunToModify.spread -= (baseSpread / (maxAmmo / 2));
-                    gunStatModifier.evenSpread_add = -(baseSpread / (maxAmmo / 2));
-                    UnityEngine.Debug.Log($"spread decrease={gunToModify.spread / (maxAmmo / 2)}");
-                    UnityEngine.Debug.Log($"ammo={maxAmmo}");
-                    //if (gunToModify.spread < 0)
-                    //{
-                    //    gunToModify.spread = 0;
-                    //}
-                    gunStatModifier.ApplyGunStatModifier(gunToModify);
-                    //if (gunToModify.spread < 0)
-                    //{
-                    //}
-                }
-                else
-                {
-                    //gunToModify.spread = baseSpread;
-                    //gunStatModifier.SetFieldValue("Spread", baseSpread);
-                    ClearModifiers();
-                }
-                UnityEngine.Debug.Log($"spread={gunToModify.spread}");
-                timeOfLastbulllet = Time.time;
-            });
-            attackTrigger.transform.parent = playerToModify.transform;
-        }
+        private int totalAmmoCount;
+        private int currentAmmoCount;
+        private float attackSpdMultiplier;
+        private float spreadMultiplier;
 
         public override void OnStart()
         {
-            base.OnStart();
-            this.baseSpread = gunToModify.spread;
-            this.maxAmmo = playerToModify.data.weaponHandler.gun.GetComponentInChildren<GunAmmo>().maxAmmo;
+            totalAmmoCount = gun.GetComponentInChildren<GunAmmo>().maxAmmo;
+            currentAmmoCount = totalAmmoCount;
         }
 
-        public void OnUpdate()
+        public override CounterStatus UpdateCounter()
         {
-            base.OnUpdate();
-            if (Time.time - timeOfLastbulllet > gunToModify.attackSpeed + (gunToModify.attackSpeed * 0.4))
+            GunAmmo currentAmmo = gun.GetComponentInChildren<GunAmmo>();
+            attackSpdMultiplier = 1f;
+            spreadMultiplier = 1f;
+            totalAmmoCount = currentAmmo.maxAmmo;
+            currentAmmoCount = (int)currentAmmo.GetFieldValue("currentAmmo");
+
+            if (currentAmmoCount > 0)
             {
-                //gunToModify.spread = baseSpread;
-                //gunStatModifier.SetFieldValue("Spread", baseSpread);
-                ClearModifiers();
-            } 
+                attackSpdMultiplier = UnityEngine.Mathf.Lerp(0.1f, 1f, ((float)currentAmmoCount / (float)totalAmmoCount * 0.5f));
+                spreadMultiplier = UnityEngine.Mathf.Lerp(0f, 1f, ((float)currentAmmoCount / (float)totalAmmoCount * 0.75f));
+                if (totalAmmoCount == 1)
+                {
+                    attackSpdMultiplier = 1f;
+                    spreadMultiplier = 0f;
+                }
+            }
+            return CounterStatus.Apply;
+        }
+
+        public override void UpdateEffects()
+        {
+            gunStatModifier.attackSpeed_mult = attackSpdMultiplier;
+            gunStatModifier.spread_mult = spreadMultiplier;
+        }
+
+        public override void OnApply()
+        {
+        }
+
+        public override void Reset()
+        {
         }
     }
 }

@@ -3,7 +3,8 @@
     "references": [
         "UnboundLib",
         "ModdingUtils",
-        "ModsPlus"
+        "ModsPlus",
+        "CardChoiceSpawnUniqueCardPatch"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],

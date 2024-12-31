@@ -3,47 +3,42 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TECards.MonoBehaviours;
 using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;
 
 namespace TECards.Cards
 {
-    class Polyphemus : CustomCard
+    class RedCandy : CustomCard
     {
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
-            cardInfo.allowMultiple = false;
-            gun.reloadTimeAdd = 0.25f;
-            gun.damage = 1.5f;
-            gun.attackSpeed = 1.5f;
-            gun.projectielSimulatonSpeed = 0.5f;
+            statModifiers.regen = 3f;
+            statModifiers.health = 1.3f;
+            cardInfo.categories = new CardCategory[] { TECards.Candy };
         }
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
-            PolyphemusEffect polyphemusEffect = player.gameObject.GetOrAddComponent<PolyphemusEffect>();
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
-            Destroy(player.gameObject.GetComponent<PolyphemusEffect>());
         }
 
         protected override string GetTitle()
         {
-            return "Polyphemus";
+            return "Red Candy";
         }
         protected override string GetDescription()
         {
-            return "Bullet size increases the less ammo you have remaining.";
+            return "";
         }
         protected override GameObject GetCardArt()
         {
-            return TECards.PolyphemusArt;
+            return null;
         }
         protected override CardInfo.Rarity GetRarity()
         {
-            return CardInfo.Rarity.Uncommon;
+            return CardInfo.Rarity.Common;
         }
         protected override CardInfoStat[] GetStats()
         {
@@ -52,36 +47,22 @@ namespace TECards.Cards
                 new CardInfoStat()
                 {
                     positive = true,
-                    stat = "Damage",
-                    amount = "+50%",
+                    stat = "Regen",
+                    amount = "+3hp/s",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat()
                 {
-                    positive = false,
-                    stat = "Reload Time",
-                    amount = "+0.25s",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                },
-                new CardInfoStat()
-                {
-                    positive = false,
-                    stat = "Projectile Speed",
-                    amount = "-50%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                },
-                new CardInfoStat()
-                {
-                    positive = false,
-                    stat = "Attack Speed",
-                    amount = "-50%",
+                    positive = true,
+                    stat = "Health",
+                    amount = "+30%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }
             };
         }
         protected override CardThemeColor.CardThemeColorType GetTheme()
         {
-            return CardThemeColor.CardThemeColorType.DestructiveRed;
+            return CardThemeColor.CardThemeColorType.ColdBlue;
         }
         public override string GetModName()
         {
