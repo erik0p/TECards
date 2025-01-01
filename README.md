@@ -69,7 +69,7 @@ Adds 14 new cards to the game!
     - -20% Reload Time
 # Patch Notes
 
-# 0.1.0
+### 0.1.0
 - intial release for testing
 
 # License
