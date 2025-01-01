@@ -26,7 +26,7 @@ namespace TECards.Cards
         }
         protected override string GetDescription()
         {
-            return "Bullets coat players in SCP-999, slowing them. Players coated in SCP-999 have decreased reload time. Players who damage someone effected by SCP-999 are healed";
+            return "Your bullets slow, increase reload time, and decrease attack speed. Players who damage someone effected by SCP-999 are healed.";
         }
         protected override GameObject GetCardArt()
         {
