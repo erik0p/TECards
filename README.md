@@ -69,9 +69,6 @@ Adds 14 new cards to the game!
     - -20% Reload Time
 # Patch Notes
 
-### 1.0.1
-- Updated SCP-999's effect
-
 ### 1.0.0
 - intial release
 
