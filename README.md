@@ -70,7 +70,7 @@ Adds 14 new cards to the game!
 # Patch Notes
 
 ### 1.0.0
-- intial release
+- initial release
 
 # License
 
