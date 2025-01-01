@@ -71,3 +71,7 @@ Adds 14 new cards to the game!
 
 # 0.1.0
 - intial release for testing
+
+# License
+
+Content relating to the SCP Foundation, including the SCP Foundation logo, is licensed under Creative Commons Sharealike 3.0 and all concepts originate from https://scpwiki.com/ and its authors. [Insert Game Name here], being derived from this content, is hereby also released under Creative Commons Sharealike 3.0.
