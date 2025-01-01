@@ -1,5 +1,4 @@
-﻿using ModdingUtils.AIMinion.Extensions;
-using TECards.MonoBehaviours;
+﻿using TECards.MonoBehaviours;
 using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;

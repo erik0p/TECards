@@ -1,7 +1,5 @@
-﻿using ModdingUtils.Extensions;
-using ModdingUtils.MonoBehaviours;
+﻿using ModdingUtils.MonoBehaviours;
 using UnboundLib;
-using UnityEngine;
 
 namespace TECards.MonoBehaviours
 {

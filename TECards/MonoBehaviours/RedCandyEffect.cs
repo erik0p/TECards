@@ -1,5 +1,4 @@
-﻿using ModdingUtils;
-using ModdingUtils.MonoBehaviours;
+﻿using ModdingUtils.MonoBehaviours;
 
 namespace TECards.MonoBehaviours
 {

@@ -1,10 +1,5 @@
 ﻿using ModdingUtils.MonoBehaviours;
 using UnityEngine;
-using TECards.MonoBehaviours;
-using TECards.RoundsEffects;
-using UnboundLib.GameModes;
-using System.Collections.Generic;
-using System.Collections;
 
 namespace TECards.MonoBehaviours
 {

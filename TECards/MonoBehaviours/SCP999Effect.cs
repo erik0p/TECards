@@ -1,8 +1,4 @@
-﻿using ModdingUtils.Extensions;
-using ModdingUtils.MonoBehaviours;
-using System.Collections;
-using System.Collections.Generic;
-using TECards.RoundsEffects;
+﻿using ModdingUtils.MonoBehaviours;
 using UnboundLib;
 using UnityEngine;
 
