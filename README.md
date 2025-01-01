@@ -42,7 +42,7 @@ Adds 14 new cards to the game!
     - Become immune to self-damage.
     - +50% Health
 - SCP-999
-    - Bullets coat players in SCP-999, slowiwng them. Players coated in SCP-999 have decreased reload time. Players who damage someone effected by SCP-999 are healed.
+    - Bullets coat players in SCP-999, slowing them. Players coated in SCP-999 have decreased reload time. Players who damage someone effected by SCP-999 are healed.
     - -50% Reload Time
 - SCP-330 (Candies don't appear in deck)
     - Get two random candies.
