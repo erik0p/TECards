@@ -32,7 +32,7 @@ namespace TECards.Cards
         }
         protected override string GetDescription()
         {
-            return "Attack speed and accuracy increase the less ammo you have remaining.";
+            return "Attack speed and accuracy increase as the amount of ammo remaining decreases.";
         }
         protected override GameObject GetCardArt()
         {

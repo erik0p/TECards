@@ -3,7 +3,6 @@
     "references": [
         "UnboundLib",
         "ModdingUtils",
-        "ModsPlus",
         "CardChoiceSpawnUniqueCardPatch"
     ],
     "optionalUnityReferences": [],

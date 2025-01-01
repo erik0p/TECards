@@ -30,7 +30,7 @@ namespace TECards.Cards
         }
         protected override string GetDescription()
         {
-            return "Bullet size increases the less ammo you have remaining.";
+            return "Bullet size increases as the amount of ammo remaining decreases.";
         }
         protected override GameObject GetCardArt()
         {
