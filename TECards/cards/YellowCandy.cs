@@ -7,6 +7,7 @@ using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;
 using CardChoiceSpawnUniqueCardPatch;
+using TECards.MonoBehaviours;
 
 namespace TECards.Cards
 {
@@ -20,9 +21,11 @@ namespace TECards.Cards
         }
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
+            YellowCandyEffect effect = player.gameObject.AddComponent<YellowCandyEffect>();
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
+            Destroy(player.gameObject.GetComponent<YellowCandyEffect>());
         }
 
         protected override string GetTitle()
@@ -31,11 +34,11 @@ namespace TECards.Cards
         }
         protected override string GetDescription()
         {
-            return "";
+            return "Grants bonus movement speed for the first 30 seconds of each round.";
         }
         protected override GameObject GetCardArt()
         {
-            return null;
+            return TECards.YellowCandyArt;
         }
         protected override CardInfo.Rarity GetRarity()
         {
@@ -45,6 +48,13 @@ namespace TECards.Cards
         {
             return new CardInfoStat[]
             {
+                new CardInfoStat()
+                {
+                    positive = true,
+                    stat = "Movement Speed",
+                    amount = "+50%",
+                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
+                },
                 new CardInfoStat()
                 {
                     positive = true,
@@ -58,19 +68,12 @@ namespace TECards.Cards
                     stat = "Reload Time",
                     amount = "-20%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                },
-                new CardInfoStat()
-                {
-                    positive = true,
-                    stat = "Movement Speed",
-                    amount = "+20%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 }
             };
         }
         protected override CardThemeColor.CardThemeColorType GetTheme()
         {
-            return CardThemeColor.CardThemeColorType.ColdBlue;
+            return CardThemeColor.CardThemeColorType.FirepowerYellow;
         }
 
         public override string GetModName()

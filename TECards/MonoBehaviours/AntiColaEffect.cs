@@ -34,7 +34,7 @@ namespace TECards.MonoBehaviours
             } 
             else if (elapsedTime >= interval)
             {
-                regenBonus = 10f;
+                regenBonus = 12f;
             }
 
             return CounterStatus.Apply;

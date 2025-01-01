@@ -15,7 +15,7 @@ namespace TECards.Cards
         public override void SetupCard(CardInfo cardInfo, Gun gun, ApplyCardStats cardStats, CharacterStatModifiers statModifiers, Block block)
         {
             statModifiers.movementSpeed = 0.7f;
-            statModifiers.regen = 10f;
+            statModifiers.regen = 12f;
         }
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
@@ -49,8 +49,8 @@ namespace TECards.Cards
                 new CardInfoStat()
                 {
                     positive = true,
-                    stat = "Regen",
-                    amount = "+10hp/s",
+                    stat = "Life Regen",
+                    amount = "+12",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat()

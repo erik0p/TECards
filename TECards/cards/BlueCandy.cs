@@ -29,11 +29,11 @@ namespace TECards.Cards
         }
         protected override string GetDescription()
         {
-            return "CardDescription";
+            return "";
         }
         protected override GameObject GetCardArt()
         {
-            return null;
+            return TECards.BlueCandyArt;
         }
         protected override CardInfo.Rarity GetRarity()
         {
@@ -54,7 +54,7 @@ namespace TECards.Cards
         }
         protected override CardThemeColor.CardThemeColorType GetTheme()
         {
-            return CardThemeColor.CardThemeColorType.ColdBlue;
+            return CardThemeColor.CardThemeColorType.DefensiveBlue;
         }
 
         public override string GetModName()

@@ -37,7 +37,7 @@ namespace TECards.Cards
         }
         protected override GameObject GetCardArt()
         {
-            return null;
+            return TECards.GreenCandyArt;
         }
         protected override CardInfo.Rarity GetRarity()
         {
@@ -50,8 +50,8 @@ namespace TECards.Cards
                 new CardInfoStat()
                 {
                     positive = true,
-                    stat = "Regen",
-                    amount = "+4hp/s",
+                    stat = "Life Regen",
+                    amount = "+5",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat()
@@ -72,7 +72,7 @@ namespace TECards.Cards
         }
         protected override CardThemeColor.CardThemeColorType GetTheme()
         {
-            return CardThemeColor.CardThemeColorType.ColdBlue;
+            return CardThemeColor.CardThemeColorType.PoisonGreen;
         }
 
         public override string GetModName()

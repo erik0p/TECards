@@ -41,7 +41,7 @@ namespace TECards.Cards
         }
         protected override GameObject GetCardArt()
         {
-            return null;
+            return TECards.SCP330Art;
         }
         protected override CardInfo.Rarity GetRarity()
         {
@@ -51,18 +51,11 @@ namespace TECards.Cards
         {
             return new CardInfoStat[]
             {
-                new CardInfoStat()
-                {
-                    positive = true,
-                    stat = "Effect",
-                    amount = "No",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                }
             };
         }
         protected override CardThemeColor.CardThemeColorType GetTheme()
         {
-            return CardThemeColor.CardThemeColorType.ColdBlue;
+            return CardThemeColor.CardThemeColorType.TechWhite;
         }
 
         public override string GetModName()
@@ -76,22 +69,16 @@ namespace TECards.Cards
             switch (randnum)
             {
                 case 0:
-                    UnityEngine.Debug.Log($"blue");
                     return ModdingUtils.Utils.Cards.instance.GetCardWithName("Blue Candy");
                 case 1:
-                    UnityEngine.Debug.Log($"yellow");
                     return ModdingUtils.Utils.Cards.instance.GetCardWithName("Yellow Candy");
                 case 2:
-                    UnityEngine.Debug.Log($"green");
                     return ModdingUtils.Utils.Cards.instance.GetCardWithName("Green Candy");
                 case 3:
-                    UnityEngine.Debug.Log($"rainbow");
                     return ModdingUtils.Utils.Cards.instance.GetCardWithName("Rainbow Candy");
                 case 4:
-                    UnityEngine.Debug.Log($"red");
                     return ModdingUtils.Utils.Cards.instance.GetCardWithName("Red Candy");
                 default:
-                    UnityEngine.Debug.Log($"defauly");
                     return null;
 
             }

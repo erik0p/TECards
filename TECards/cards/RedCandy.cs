@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TECards.MonoBehaviours;
 using UnboundLib;
 using UnboundLib.Cards;
 using UnityEngine;
@@ -19,9 +20,11 @@ namespace TECards.Cards
         }
         public override void OnAddCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
+            RedCandyEffect effect = player.gameObject.AddComponent<RedCandyEffect>();
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
+            Destroy(player.gameObject.GetComponent<RedCandyEffect>());
         }
 
         protected override string GetTitle()
@@ -30,11 +33,11 @@ namespace TECards.Cards
         }
         protected override string GetDescription()
         {
-            return "";
+            return "Grants health regeneration for the first 30 seconds of each round.";
         }
         protected override GameObject GetCardArt()
         {
-            return null;
+            return TECards.RedCandyArt;
         }
         protected override CardInfo.Rarity GetRarity()
         {
@@ -47,8 +50,8 @@ namespace TECards.Cards
                 new CardInfoStat()
                 {
                     positive = true,
-                    stat = "Regen",
-                    amount = "+3hp/s",
+                    stat = "Life Regen",
+                    amount = "+10",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat()
@@ -62,7 +65,7 @@ namespace TECards.Cards
         }
         protected override CardThemeColor.CardThemeColorType GetTheme()
         {
-            return CardThemeColor.CardThemeColorType.ColdBlue;
+            return CardThemeColor.CardThemeColorType.DestructiveRed;
         }
         public override string GetModName()
         {

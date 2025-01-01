@@ -36,7 +36,7 @@ namespace TECards.Cards
         }
         protected override GameObject GetCardArt()
         {
-            return null;
+            return TECards.RainbowCandyArt;
         }
         protected override CardInfo.Rarity GetRarity()
         {
@@ -78,7 +78,7 @@ namespace TECards.Cards
         }
         protected override CardThemeColor.CardThemeColorType GetTheme()
         {
-            return CardThemeColor.CardThemeColorType.ColdBlue;
+            return CardThemeColor.CardThemeColorType.EvilPurple;
         }
 
         public override string GetModName()

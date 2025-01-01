@@ -37,11 +37,11 @@ namespace TECards.Cards
         }
         protected override GameObject GetCardArt()
         {
-            return null;
+            return TECards.MozemDownArt;
         }
         protected override CardInfo.Rarity GetRarity()
         {
-            return CardInfo.Rarity.Uncommon;
+            return CardInfo.Rarity.Rare;
         }
         protected override CardInfoStat[] GetStats()
         {
@@ -51,7 +51,7 @@ namespace TECards.Cards
                 {
                     positive = true,
                     stat = "Ammo",
-                    amount = "+30",
+                    amount = "+40",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
                 new CardInfoStat()
@@ -82,13 +82,13 @@ namespace TECards.Cards
                     amount = "-20%",
                     simepleAmount = CardInfoStat.SimpleAmount.notAssigned
                 },
-                new CardInfoStat()
-                {
-                    positive = false,
-                    stat = "Spread",
-                    amount = "+30%",
-                    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
-                }
+                //new CardInfoStat()
+                //{
+                //    positive = false,
+                //    stat = "Spread",
+                //    amount = "+30%",
+                //    simepleAmount = CardInfoStat.SimpleAmount.notAssigned
+                //}
             };
         }
         protected override CardThemeColor.CardThemeColorType GetTheme()

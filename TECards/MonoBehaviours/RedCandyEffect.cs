@@ -1,38 +1,48 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using ModdingUtils;
+﻿using ModdingUtils;
 using ModdingUtils.MonoBehaviours;
 
 namespace TECards.MonoBehaviours
 {
-    public class GreenCandyEffect : CounterReversibleEffect
+    public class RedCandyEffect : CounterReversibleEffect
     {
+        private float duration;
         private float regenAmount;
+
+        public override void OnStart()
+        {
+            base.OnStart();
+            ResetTimer();
+        }
         public override void OnApply()
         {
         }
 
         public override void Reset()
         {
+            ResetTimer();
         }
 
         public override CounterStatus UpdateCounter()
         {
-            if (player.data.block.IsOnCD())
+            duration -= TimeHandler.deltaTime;
+            if (duration > 0) 
             {
-                regenAmount = 5f;
+                regenAmount = 10f;
             } else
             {
                 regenAmount = 0f;
             }
-
             return CounterStatus.Apply;
         }
 
         public override void UpdateEffects()
         {
-            healthHandlerModifier.regen_add = regenAmount;
+            health.regeneration = regenAmount;
+        }
+
+        public void ResetTimer()
+        {
+            duration = 30f;
         }
     }
 }

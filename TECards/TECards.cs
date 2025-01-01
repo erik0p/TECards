@@ -22,6 +22,7 @@ namespace TECards
     public class TECards : BaseUnityPlugin
     {
         internal static AssetBundle assets;
+        public static GameObject MozemDownArt;
         public static GameObject PolyphemusArt;
         public static GameObject SteroidsArt;
         public static GameObject AntiColaArt;
@@ -29,10 +30,16 @@ namespace TECards
         public static GameObject SCP207Art;
         public static GameObject SCP999Art;
         public static GameObject SCP682Art;
+        public static GameObject GreenCandyArt;
+        public static GameObject BlueCandyArt;
+        public static GameObject RedCandyArt;
+        public static GameObject RainbowCandyArt;
+        public static GameObject YellowCandyArt;
+        public static GameObject SCP330Art;
 
         private const string ModId = "com.thirdeye.tecards";
         private const string ModName = "TECards";
-        private const string Version = "0.0.1";
+        private const string Version = "0.1.0";
         public const string ModInitials = "TE";
         public static CardCategory Candy;
 
@@ -45,6 +52,7 @@ namespace TECards
         private void Start()
         {
             assets = AssetUtils.LoadAssetBundleFromResources("assets", typeof(TECards).Assembly);
+            MozemDownArt = assets.LoadAsset<GameObject>("C_Mozemdown");
             PolyphemusArt = assets.LoadAsset<GameObject>("C_Polyphemus");
             SteroidsArt = assets.LoadAsset<GameObject>("C_Steroids");
             AntiColaArt = assets.LoadAsset<GameObject>("C_Anti-Cola");
@@ -52,11 +60,16 @@ namespace TECards
             SCP207Art = assets.LoadAsset<GameObject>("C_SCP207");
             SCP999Art = assets.LoadAsset<GameObject>("C_SCP999");
             SCP682Art = assets.LoadAsset<GameObject>("C_SCP682");
+            GreenCandyArt = assets.LoadAsset<GameObject>("C_GreenCandy");
+            BlueCandyArt = assets.LoadAsset<GameObject>("C_BlueCandy");
+            RedCandyArt = assets.LoadAsset<GameObject>("C_RedCandy");
+            RainbowCandyArt = assets.LoadAsset<GameObject>("C_RainbowCandy");
+            YellowCandyArt = assets.LoadAsset<GameObject>("C_YellowCandy");
+            SCP330Art = assets.LoadAsset<GameObject>("C_SCP330");
 
             Candy = CustomCardCategories.instance.CardCategory("Candy");
 
             //CustomCard.BuildCard<LaggyBoi>(); // Card not finished
-            // need art for mozemdown, scp330, bgryr candy
             CustomCard.BuildCard<MozemDown>();
             CustomCard.BuildCard<Polyphemus>();
             CustomCard.BuildCard<SCP1853>();
