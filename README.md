@@ -7,14 +7,14 @@ Adds 14 new cards to the game!
     - +12 Life Regen
     - -30% Movement Speed
 - Mozem Down
-    - Attack speed and accuracy increase the less ammo you have remaining.
+    - Attack speed and accuracy increase as the amount of ammo remaining decreases.
     - +40 Ammo
     - +15% Attack Speed
     - -90% Damage
     - +1.0s Reload Time
     - -20% Movement Speed
 - Polyphemus
-    - Bullet size increases the less ammo you have remaining.
+    - Bullet size increases as the amount of ammo remaining decreases.
     - +50% Damage
     - +0.25s Reload Time
     - -50% Projectile Speed
