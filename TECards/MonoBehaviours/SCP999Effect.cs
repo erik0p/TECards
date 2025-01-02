@@ -13,7 +13,6 @@ namespace TECards.MonoBehaviours
             base.OnStart();
             duration = 5.0f;
             characterStatModifiersModifier.movementSpeed_mult = 0.8f;
-            gunAmmoStatModifier.reloadTimeMultiplier_mult = 1.4f;
             gunStatModifier.attackSpeed_mult = 1.4f;
 
             colorEffect = player.gameObject.GetOrAddComponent<ReversibleColorEffect>();

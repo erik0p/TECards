@@ -26,7 +26,7 @@ namespace TECards.Cards
         }
         protected override string GetDescription()
         {
-            return "Your bullets slow, increase reload time, and decrease attack speed. Players who damage someone effected by SCP-999 are healed.";
+            return "Your bullets slow, and decrease attack speed. Players who damage someone effected by SCP-999 are healed.";
         }
         protected override GameObject GetCardArt()
         {
