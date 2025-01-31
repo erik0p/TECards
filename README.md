@@ -69,6 +69,9 @@ Adds 14 new cards to the game!
     - -20% Reload Time
 # Patch Notes
 
+### 1.0.2
+- Updated SCP-999
+
 ### 1.0.1
 - SCP-035 no longer breaks the game
 
