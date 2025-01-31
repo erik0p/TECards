@@ -17,12 +17,10 @@ namespace TECards.Cards
         {
             SCP035Effect reversibleEffect = player.gameObject.AddComponent<SCP035Effect>();
             SCP035WasDealtDamageEffect wasDealtDamageEffect = player.gameObject.GetOrAddComponent<SCP035WasDealtDamageEffect>();
-            GameModeManager.AddHook(GameModeHooks.HookPointEnd, SCP035Effect.RemoveProxies);
         }
         public override void OnRemoveCard(Player player, Gun gun, GunAmmo gunAmmo, CharacterData data, HealthHandler health, Gravity gravity, Block block, CharacterStatModifiers characterStats)
         {
             Destroy(player.gameObject.GetComponent<SCP035Effect>());
-            GameModeManager.RemoveHook(GameModeHooks.HookPointEnd, SCP035Effect.RemoveProxies);
         }
 
         protected override string GetTitle()

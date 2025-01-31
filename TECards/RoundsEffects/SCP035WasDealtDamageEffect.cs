@@ -14,6 +14,7 @@ namespace TECards.RoundsEffects
                 if (playerToApplyEffect.gameObject.GetComponent<SCP035Effect>() == null)
                 {
                     SCP035EffectProxy reversibleEffect = playerToApplyEffect.gameObject.GetOrAddComponent<SCP035EffectProxy>();
+                    reversibleEffect.UpdateProxyStatus(true);
                 }
                 if (playerToApplyEffect.gameObject.GetComponent<SCP035WasDealtDamageEffect>() == null)
                 {

@@ -1,11 +1,13 @@
 ﻿using ModdingUtils.MonoBehaviours;
 using UnityEngine;
+using UnboundLib;
 
 namespace TECards.MonoBehaviours
 {
     public class SCP035EffectProxy : CounterReversibleEffect
     {
         private bool applyDamageBuff;
+        private bool isProxyActive;
         private float elapsedTime;
         private float interval = 8f;
 
@@ -20,6 +22,7 @@ namespace TECards.MonoBehaviours
         public override void Reset()
         {
             applyDamageBuff = true;
+            isProxyActive = false;
             elapsedTime = 0f;
         }
 
@@ -30,6 +33,10 @@ namespace TECards.MonoBehaviours
             {
                 applyDamageBuff = !applyDamageBuff;
                 elapsedTime %= interval;
+            }
+            if (!isProxyActive)
+            {
+                return CounterStatus.Remove;
             }
             return CounterStatus.Apply;
         }
@@ -58,6 +65,16 @@ namespace TECards.MonoBehaviours
 
         public override void OnApply()
         {
+        }
+
+        public void UpdateProxyStatus(bool active)
+        {
+            isProxyActive = active;
+        }
+
+        public bool IsActive()
+        {
+            return isProxyActive;
         }
     }
 }

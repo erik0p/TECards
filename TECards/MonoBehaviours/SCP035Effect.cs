@@ -1,7 +1,5 @@
 ﻿using ModdingUtils.MonoBehaviours;
-using System.Collections;
-using TECards.RoundsEffects;
-using UnboundLib.GameModes;
+using UnboundLib;
 using UnityEngine;
 
 namespace TECards.MonoBehaviours
@@ -60,25 +58,6 @@ namespace TECards.MonoBehaviours
 
         public override void OnApply()
         {
-        }
-
-        public static IEnumerator RemoveProxies(IGameModeHandler gameModeHandler)
-        {
-            foreach (var player in PlayerManager.instance.players)
-            {
-                SCP035EffectProxy effect1 = player.gameObject.GetComponent<SCP035EffectProxy>();
-                SCP035WasDealtDamageEffectProxy effect2 = player.gameObject.GetComponent<SCP035WasDealtDamageEffectProxy>();
-                if (effect1 != null)
-                {
-                    Destroy(effect1);
-                }
-                if (effect2 != null)
-                {
-                    Destroy(effect2);
-                }
-                player.data.stats.WasUpdated();
-            }
-            yield break;
         }
     }
 }
